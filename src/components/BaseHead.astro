@@ -1,21 +1,26 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	ogType?: string;
+  title: string;
+  description: string;
+  image?: string;
+  ogType?: string;
+  url?: string; // ← オプションでページURLも指定可能に
 }
 
-const { title, description, image = '/social_img.webp', ogType = 'website' } = Astro.props;
+const {
+  title,
+  description,
+  image = '/social_img.webp',
+  ogType = 'website',
+  url = 'https://isuku.jp/' // ← 仮の公開予定URL（適宜変更）
+} = Astro.props;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
@@ -26,14 +31,14 @@ const { title, description, image = '/social_img.webp', ogType = 'website' } = A
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={new URL(image, url)} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, url)} />

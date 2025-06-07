@@ -8,19 +8,26 @@ import { ViewTransitions } from "astro:transitions";
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
 
 const {
-  image,
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
+  image = "/ogp.png",
+  url = "https://isuku.jp/",
+  ogType = "website",
   includeSidebar = true,
   sideBarActiveItemID,
-  ogType,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="ja" data-theme="lofi">
   <head>
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      url={url}
+      ogType={ogType}
+    />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>

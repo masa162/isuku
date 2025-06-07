@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles")).sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+---
+
+<script type="module">
+  const input = document.getElementById("search");
+  input?.addEventListener("input", () => {
+    const keyword = input.value.toLowerCase();
+    const cards = document.querySelectorAll(".article-card");
+    cards.forEach((card) => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(keyword) ? "block" : "none";
+    });
+  });
+</script>
+
+<BaseLayout
+  title="医学論文一覧 | 医スク！"
+  description="医スク！が厳選した医学論文の一覧ページ。研究者・医療従事者・一般の方向けに、信頼できる医学論文をわかりやすく紹介しています。"
+  image="/ogp.png"
+  url="https://isuku.jp/articles"
+  sideBarActiveItemID="articles"
+>
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-6">🗂 医学論文 一覧</h1>
+
+    <div class="mb-8">
+      <input
+        id="search"
+        type="text"
+        placeholder="🔍 キーワードで検索（例：脳卒中、メタ解析）"
+        class="input input-bordered w-full"
+      />
+    </div>
+
+    {articles.length === 0 ? (
+      <p class="text-gray-500 dark:text-gray-400">記事がまだありません。</p>
+    ) : (
+      <div class="space-y-6">
+        {articles.map(({ slug, data }) => (
+          <div class="article-card">
+            <HorizontalCard
+              title={data.title}
+              desc={data.description}
+              img={data.heroImage}
+              url={`/articles/${slug}`}
+              badge="論文"
+              tags={data.tags}
+            />
+          </div>
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  const tagSet = new Set<string>();
+
+  // すべてのタグを収集
+  for (const article of articles) {
+    article.data.tags?.forEach(tag => tagSet.add(tag));
+  }
+
+  return Array.from(tagSet).map((tag) => ({
+    params: { tag },
+  }));
+}
+
+const { tag } = Astro.params;
+const articles = (await getCollection("articles")).filter((article) =>
+  article.data.tags?.includes(tag)
+);
+---
+
+<BaseLayout
+  title={`タグ: ${tag} | 医スク！`}
+  description={`タグ「${tag}」に関連する医学論文一覧ページです。`}
+  image="/ogp.png"
+  url={`https://isuku.jp/tags/${tag}`}
+  sideBarActiveItemID="articles"
+>
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold mb-6">🏷 タグ: {tag}</h1>
+
+    {articles.length === 0 ? (
+      <p class="text-gray-500 dark:text-gray-400">このタグに関連する記事はまだありません。</p>
+    ) : (
+      <div class="space-y-6">
+        {articles.map(({ slug, data }) => (
+          <HorizontalCard
+            title={data.title}
+            desc={data.description}
+            img={data.heroImage}
+            url={`/articles/${slug}`}
+            badge="論文"
+            tags={data.tags}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>
