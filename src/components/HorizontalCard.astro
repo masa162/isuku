@@ -1,22 +1,26 @@
 ---
 const {
   title,
-  img = "/ogp.png", // heroImage が未定義なら ogp.png にフォールバック
+  img = "/ogp.png",
   desc,
   url,
   badge,
   tags,
-  target = "_blank"
+  pubDate,
+  target = "_self"
 } = Astro.props;
 
 import { Image } from "astro:assets";
+
+// 日付整形
+const formattedDate = pubDate
+  ? new Date(pubDate).toLocaleDateString("ja-JP")
+  : "";
 ---
 
-<div
-  class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
->
+<div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
   <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
+    <div class="hero-content flex-col md:flex-row gap-4">
       <Image
         src={img}
         width={750}
@@ -26,11 +30,16 @@ import { Image } from "astro:assets";
         class="max-w-full md:max-w-[13rem] rounded-lg"
       />
       <div class="grow w-full">
-        <h1 class="text-xl font-bold">
+        <h1 class="text-xl font-bold text-blue-800">
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {badge && <span class="badge badge-secondary ml-2">{badge}</span>}
         </h1>
-        <p class="py-1 text-1xl">{desc}</p>
+
+        {formattedDate && (
+          <p class="text-sm text-gray-500 mt-1">投稿日：{formattedDate}</p>
+        )}
+
+        <p class="py-1 text-base text-gray-800">{desc}</p>
 
         {tags?.length && (
           <div class="card-actions justify-start mt-2 flex flex-wrap gap-2">
