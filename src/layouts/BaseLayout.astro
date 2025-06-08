@@ -1,6 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import { ViewTransitions } from "astro:transitions";
@@ -36,10 +36,9 @@ const {
 
       <!-- メインコンテンツエリア -->
       <div class="drawer-content bg-base-100">
-        <Header title={SITE_TITLE} />
+        <Nav title={SITE_TITLE} />
         <div class="md:flex md:justify-center">
           <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
-            <!-- ページごとの内容をここに挿入 -->
             <slot />
           </main>
         </div>

@@ -1,0 +1,26 @@
+---
+// src/components/Nav.astro
+const { title = "医スク！" } = Astro.props;
+---
+<nav class="w-full bg-base-100 border-b border-base-300">
+  <div class="max-w-screen-xl mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- 左側：ロゴ -->
+    <a href="/" class="text-xl font-bold text-primary">{title}</a>
+
+    <!-- モバイル：Drawer開閉ボタン -->
+    <label for="my-drawer" class="btn btn-square btn-ghost lg:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+
+    <!-- PC：メニュー -->
+    <ul class="hidden lg:flex gap-4 text-sm">
+      <li><a href="/about" class="hover:underline">このサイトについて</a></li>
+      <li><a href="/tags" class="hover:underline">タグ一覧</a></li>
+      <li><a href="/contact" class="hover:underline">お問い合わせ</a></li>
+    </ul>
+  </div>
+</nav>

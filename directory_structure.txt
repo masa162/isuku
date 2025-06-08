@@ -512,15 +512,25 @@
 ├── package.json
 ├── pnpm-lock.yaml
 ├── public
+│   ├── back_astrofy
+│   │   ├── itemPreview.webp
+│   │   ├── post_img.webp
+│   │   ├── profile.webp
+│   │   ├── robots.txt
+│   │   └── social_img.webp
+│   ├── directory_manage.text
 │   ├── favicon.svg
-│   ├── images
-│   │   └── topmok_medteam.png
-│   ├── itemPreview.webp
-│   ├── ogp.png
-│   ├── post_img.webp
-│   ├── profile.webp
-│   ├── robots.txt
-│   └── social_img.webp
+│   └── images
+│       ├── articles
+│       │   ├── diabetes-care
+│       │   └── stroke-study
+│       ├── authors
+│       ├── hero
+│       ├── ogp
+│       │   ├── ogp.jpg
+│       │   └── ogp.png
+│       ├── topmok_medteam.png
+│       └── ui
 ├── src
 │   ├── components
 │   │   ├── BaseHead.astro
@@ -539,10 +549,6 @@
 │   ├── content
 │   │   ├── articles
 │   │   │   └── article1.md
-│   │   ├── blog
-│   │   │   ├── post1.md
-│   │   │   ├── post2.md
-│   │   │   └── post3.md
 │   │   ├── config.ts
 │   │   └── store
 │   │       ├── item1.md
@@ -560,6 +566,8 @@
 │   │   ├── articles
 │   │   │   ├── [slug].astro
 │   │   │   └── index.astro
+│   │   ├── audience
+│   │   │   └── [type].astro
 │   │   ├── blog
 │   │   │   ├── [...page].astro
 │   │   │   ├── [slug].astro
@@ -582,4 +590,4 @@
 ├── tailwind.config.cjs
 └── tsconfig.json
 
-525 directories, 58 files
+533 directories, 58 files
