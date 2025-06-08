@@ -44,7 +44,7 @@ const sortedTags = Array.from(tagSet).sort((a, b) => a.localeCompare(b, "ja"));
           title={post.data.title}
           desc={post.data.description}
           url={`/articles/${post.slug}`}
-          img={post.data.image || "/ogp.png"}
+          img={post.data.image ?? "/images/ogp/ogp.png"}
           tags={post.data.tags}
           pubDate={post.data.pubDate}
           target="_self"

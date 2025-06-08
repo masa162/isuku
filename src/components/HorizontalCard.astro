@@ -1,7 +1,7 @@
 ---
 const {
   title,
-  img = "/ogp.png",
+  img = "/images/ogp/ogp.png", // デフォルト画像（public配下）
   desc,
   url,
   badge,
@@ -9,8 +9,6 @@ const {
   pubDate,
   target = "_self"
 } = Astro.props;
-
-import { Image } from "astro:assets";
 
 // 日付整形
 const formattedDate = pubDate
@@ -21,13 +19,11 @@ const formattedDate = pubDate
 <div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
   <a href={url} target={target}>
     <div class="hero-content flex-col md:flex-row gap-4">
-      <Image
+      <img
         src={img}
-        width={750}
-        height={422}
-        format="webp"
         alt={title}
-        class="max-w-full md:max-w-[13rem] rounded-lg"
+        class="w-full md:w-[13rem] h-auto rounded-lg object-cover"
+        loading="lazy"
       />
       <div class="grow w-full">
         <h1 class="text-xl font-bold text-blue-800">
