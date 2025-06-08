@@ -1,0 +1,30 @@
+---
+export async function getStaticPaths() {
+  return [
+    { params: { type: "pro" } },
+    { params: { type: "students" } },
+    { params: { type: "general" } },
+    { params: { type: "family" } },
+  ];
+}
+
+const { type } = Astro.params;
+
+const titles = {
+  pro: "医療従事者向け",
+  students: "医学生・研修医向け",
+  general: "一般の方向け",
+  family: "高齢者・家族向け"
+};
+
+const pageTitle = titles[type] ?? "読者別おすすめ";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={`${pageTitle} | 医スク！`}>
+  <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+  <p class="text-lg mb-8">このカテゴリでは「{pageTitle}」向けの記事を紹介しています。</p>
+
+  <!-- TODO: 読者層でフィルタした記事を表示するように拡張予定 -->
+  <p class="text-sm text-gray-500">※ 現在準備中です。</p>
+</BaseLayout>

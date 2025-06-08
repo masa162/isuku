@@ -1,26 +1,18 @@
----
-const { sideBarActiveItemID } = Astro.props;
-const activeClass = "bg-base-300"; // For primary color replace with `active` class
----
+<ul class="menu p-4 w-80 text-base-content">
+  <li class="menu-title">🧪 研究・論文カテゴリ</li>
+  <li><a href="/tags/注目論文">注目の論文まとめ</a></li>
+  <li><a href="/tags/疾患別">疾患別研究記事</a></li>
+  <li><a href="/tags/レビュー">最新医学レビュー</a></li>
+  <li><a href="/tags/海外">海外ジャーナル紹介</a></li>
 
-<ul class="menu grow shrink menu-md overflow-y-auto">
-    <li><a class="py-3 text-base" id="home" href="/">Home</a></li>
-    <li><a class="py-3 text-base" id="projects" href="/projects">Projects</a></li>
-    <li><a class="py-3 text-base" id="services" href="/services">Services</a></li>
-    <li><a class="py-3 text-base" id="store" href="/store">Store</a></li>
-    <li><a class="py-3 text-base" id="blog" href="/blog/">Blog</a></li>
-    <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
-    <li>
-        <a
-            class="py-3 text-base"
-            href="mailto:contact.manuelernestog@gmail.com"
-            target="_blank"
-            referrerpolicy="no-referrer-when-downgrade">Contact</a
-        >
-    </li>
+  <li class="menu-title">💡 医療の今としくみ</li>
+  <li><a href="/tags/制度">医療制度・現場のしくみ</a></li>
+  <li><a href="/tags/予測">医療統計・予測</a></li>
+  <li><a href="/tags/学会">学会・カンファレンス情報</a></li>
+
+  <li class="menu-title">🧍 読者別おすすめ</li>
+  <li><a href="/audience/pro">医療従事者向け</a></li>
+  <li><a href="/audience/students">医学生・研修医向け</a></li>
+  <li><a href="/audience/general">一般の方向け</a></li>
+  <li><a href="/audience/family">高齢者・家族向け</a></li>
 </ul>
-
-<script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass }}>
-const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem && activeItemElem.classList.add(activeClass);
-</script>

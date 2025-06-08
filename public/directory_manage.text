@@ -1,0 +1,17 @@
+/public
+└── images
+    ├── hero/                ← トップページのビジュアル素材（例：hero-image.webp）
+    ├── articles/            ← 記事ごとの画像をslug単位で分類
+    │   ├── stroke-study/
+    │   │   ├── ogp.webp
+    │   │   ├── bloodflow-compare.webp
+    │   └── diabetes-care/
+    │       ├── chart1.webp
+    │       └── insulin-action.webp
+    ├── ogp/                 ← SNSシェア用画像（slug単位でもOK）
+    ├── authors/             ← 執筆者・運営メンバーのプロフィール写真
+    │   ├── dr-sato.webp
+    │   └── prof-yamada.png
+    └── ui/                  ← UIアイコン（例：検索ボタン、タグアイコン等）
+        ├── tag.svg
+        └── search.webp

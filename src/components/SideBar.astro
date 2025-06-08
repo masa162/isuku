@@ -1,6 +1,5 @@
 ---
 import SideBarFooter from "./SideBarFooter.astro";
-import { Image } from "astro:assets";
 import SideBarMenu from "./SideBarMenu.astro";
 const { sideBarActiveItemID } = Astro.props;
 ---
@@ -8,16 +7,25 @@ const { sideBarActiveItemID } = Astro.props;
 <div class="drawer-side z-40">
   <label for="my-drawer" class="drawer-overlay"></label>
   <aside class="px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col">
+    
+    <!-- ロゴ画像：クリックでTOPページに遷移 -->
     <div class="w-fit mx-auto mt-5 mb-6">
-      <a href="/">
-        <div class="avatar transition ease-in-out hover:scale-[102%] block m-auto">
-          <div class="w-[8.5rem]">
-            <Image class="mask mask-circle" format="webp" width={300} height={300} src="/profile.webp" alt="Profile image" />
-          </div>
-        </div>
+      <a href="/" aria-label="トップページへ">
+        <img
+          src="/images/ogp/ogp.jpg"
+          alt="医スク！トップ画像"
+          class="rounded-lg shadow transition ease-in-out hover:scale-[102%] w-[11rem]"
+          width="300"
+          height="300"
+          loading="lazy"
+        />
       </a>
     </div>
+
+    <!-- メニュー一覧 -->
     <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
+
+    <!-- フッター -->
     <SideBarFooter />
   </aside>
 </div>
